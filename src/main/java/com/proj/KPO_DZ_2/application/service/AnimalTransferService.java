@@ -5,8 +5,11 @@ import com.proj.KPO_DZ_2.domain.event.EventPublisher;
 import com.proj.KPO_DZ_2.domain.model.Animal;
 import com.proj.KPO_DZ_2.domain.repository.AnimalRepository;
 import com.proj.KPO_DZ_2.domain.repository.EnclosureRepository;
+import org.springframework.stereotype.Service;
+
 import java.util.UUID;
 
+@Service
 public class AnimalTransferService {
     private final AnimalRepository animalRepo;
     private final EnclosureRepository enclosureRepo;

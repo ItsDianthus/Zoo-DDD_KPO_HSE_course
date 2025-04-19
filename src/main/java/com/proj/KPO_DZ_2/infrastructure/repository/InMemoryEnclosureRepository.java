@@ -2,10 +2,13 @@ package com.proj.KPO_DZ_2.infrastructure.repository;
 
 import com.proj.KPO_DZ_2.domain.model.Enclosure;
 import com.proj.KPO_DZ_2.domain.repository.EnclosureRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.UUID;
 
+@Repository
 public class InMemoryEnclosureRepository implements EnclosureRepository {
     private final Map<UUID, Enclosure> store = new ConcurrentHashMap<>();
 

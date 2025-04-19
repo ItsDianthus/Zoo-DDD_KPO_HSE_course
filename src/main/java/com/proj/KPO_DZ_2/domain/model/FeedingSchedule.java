@@ -1,5 +1,7 @@
 package com.proj.KPO_DZ_2.domain.model;
 
+import com.proj.KPO_DZ_2.domain.model.enums.FoodType;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;

@@ -2,11 +2,14 @@ package com.proj.KPO_DZ_2.infrastructure.repository;
 
 import com.proj.KPO_DZ_2.domain.model.Animal;
 import com.proj.KPO_DZ_2.domain.repository.AnimalRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.UUID;
 
+@Repository
 public class InMemoryAnimalRepository implements AnimalRepository {
     private final Map<UUID, Animal> store = new ConcurrentHashMap<>();
 

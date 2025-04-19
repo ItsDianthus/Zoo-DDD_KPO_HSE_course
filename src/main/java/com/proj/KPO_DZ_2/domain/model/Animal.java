@@ -1,5 +1,8 @@
 package com.proj.KPO_DZ_2.domain.model;
 
+import com.proj.KPO_DZ_2.domain.model.enums.HealthStatus;
+import com.proj.KPO_DZ_2.domain.model.enums.Sex;
+
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;

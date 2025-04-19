@@ -5,12 +5,14 @@ import com.proj.KPO_DZ_2.domain.model.Animal;
 import com.proj.KPO_DZ_2.domain.model.Enclosure;
 import com.proj.KPO_DZ_2.domain.repository.AnimalRepository;
 import com.proj.KPO_DZ_2.domain.repository.EnclosureRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Service
 public class ZooStatisticsService {
     private final AnimalRepository animalRepo;
     private final EnclosureRepository enclosureRepo;

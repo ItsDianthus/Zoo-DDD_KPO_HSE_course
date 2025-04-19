@@ -4,11 +4,13 @@ import com.proj.KPO_DZ_2.domain.event.EventPublisher;
 import com.proj.KPO_DZ_2.domain.event.FeedingTimeEvent;
 import com.proj.KPO_DZ_2.domain.model.FeedingSchedule;
 import com.proj.KPO_DZ_2.domain.repository.FeedingScheduleRepository;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 import java.util.List;
 
+@Service
 public class FeedingOrganizationService {
     private final FeedingScheduleRepository scheduleRepo;
     private final EventPublisher eventPublisher;
