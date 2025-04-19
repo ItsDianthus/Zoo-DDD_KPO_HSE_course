@@ -6,6 +6,7 @@ import com.proj.KPO_DZ_2.domain.model.FeedingSchedule;
 import com.proj.KPO_DZ_2.domain.repository.FeedingScheduleRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import java.util.List;
@@ -24,7 +25,14 @@ public class FeedingOrganizationService {
     public List<FeedingSchedule> getFeedingsAt(LocalDateTime time) {
         return scheduleRepo.findAll().stream()
                 .filter(s -> !s.isCompleted()
-                        && Math.abs(s.getFeedingTime().until(time, java.time.temporal.ChronoUnit.MINUTES)) <= 5)
+                        && Duration
+                        .between(
+                                s.getFeedingTime().getTime(),
+                                time.toLocalTime()
+                        )
+                        .abs()
+                        .toMinutes() <= 5
+                )
                 .toList();
     }
 

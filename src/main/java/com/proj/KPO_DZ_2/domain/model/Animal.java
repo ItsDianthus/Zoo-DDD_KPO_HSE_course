@@ -2,6 +2,8 @@ package com.proj.KPO_DZ_2.domain.model;
 
 import com.proj.KPO_DZ_2.domain.model.enums.HealthStatus;
 import com.proj.KPO_DZ_2.domain.model.enums.Sex;
+import com.proj.KPO_DZ_2.domain.valueobjects.AnimalName;
+import com.proj.KPO_DZ_2.domain.valueobjects.FavoriteFood;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -11,19 +13,19 @@ public class Animal {
 
     private final UUID id;
     private String species;
-    private String name;
+    private AnimalName name;
     private LocalDate birthDate;
     private Sex sex;
-    private String favoriteFood;
+    private FavoriteFood favoriteFood;
     private HealthStatus status;
     private UUID enclosureId;
 
     public Animal(UUID id,
                   String species,
-                  String name,
+                  AnimalName name,
                   LocalDate birthDate,
                   Sex sex,
-                  String favoriteFood,
+                  FavoriteFood favoriteFood,
                   HealthStatus status,
                   UUID enclosureId) {
         this.id = Objects.requireNonNull(id, "id must not be null");
@@ -36,18 +38,40 @@ public class Animal {
         this.enclosureId = Objects.requireNonNull(enclosureId, "enclosureId must not be null");
     }
 
-    public UUID getId() { return id; }
-    public String getSpecies() { return species; }
-    public String getName() { return name; }
-    public LocalDate getBirthDate() { return birthDate; }
-    public Sex getSex() { return sex; }
-    public String getFavoriteFood() { return favoriteFood; }
-    public HealthStatus getStatus() { return status; }
-    public UUID getEnclosureId() { return enclosureId; }
+    public UUID getId() {
+        return id;
+    }
 
+    public String getSpecies() {
+        return species;
+    }
+
+    public AnimalName getName() {
+        return name;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public FavoriteFood getFavoriteFood() {
+        return favoriteFood;
+    }
+
+    public HealthStatus getStatus() {
+        return status;
+    }
+
+    public UUID getEnclosureId() {
+        return enclosureId;
+    }
 
     public void feed() {
-        // мб отметка последнего кормления и генерация события
+        // business logic, e.g. mark last feeding timestamp, publish FeedingTimeEvent
     }
 
     public void treat() {
@@ -55,18 +79,18 @@ public class Animal {
     }
 
     public void moveTo(UUID newEnclosureId) {
+        Objects.requireNonNull(newEnclosureId, "newEnclosureId must not be null");
         if (this.enclosureId.equals(newEnclosureId)) {
             throw new IllegalArgumentException("Нельзя переместить животное в тот же вольер");
         }
-        this.enclosureId = Objects.requireNonNull(newEnclosureId, "newEnclosureId must not be null");
-        // публикация события AnimalMovedEvent в сервисе
+        this.enclosureId = newEnclosureId;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Animal)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+
         Animal animal = (Animal) o;
         return id.equals(animal.id);
     }
@@ -74,5 +98,19 @@ public class Animal {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "id=" + id +
+                ", species='" + species + '\'' +
+                ", name=" + name +
+                ", birthDate=" + birthDate +
+                ", sex=" + sex +
+                ", favoriteFood=" + favoriteFood +
+                ", status=" + status +
+                ", enclosureId=" + enclosureId +
+                '}';
     }
 }

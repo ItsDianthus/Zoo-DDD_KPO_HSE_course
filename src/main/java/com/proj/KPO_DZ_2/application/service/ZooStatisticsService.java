@@ -29,7 +29,7 @@ public class ZooStatisticsService {
 
     public List<Enclosure> getFreeEnclosures() {
         return enclosureRepo.findAll().stream()
-                .filter(e -> e.getCapacity() - e.getCurrentAnimals() > 0)
+                .filter(e -> e.getCapacity().getValue() > e.getCurrentAnimals())
                 .toList();
     }
 
